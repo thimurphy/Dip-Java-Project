@@ -1,0 +1,35 @@
+﻿DROP TABLE IF EXISTS restaurant.menu;
+CREATE TABLE  restaurant.menu (
+  itemID int(10),
+  name varchar(45),
+  category varchar(45),
+  price decimal(10,0),
+  PRIMARY KEY (itemID)
+);
+DROP TABLE IF EXISTS restaurant.restaurantTables;
+CREATE TABLE  restaurant.restaurantTables (
+  tableNumber int(10),
+  subTotal decimal(10,0),
+  waitername varchar(45),
+  PRIMARY KEY (tableNumber)
+);
+DROP TABLE IF EXISTS restaurant.waiters;
+CREATE TABLE  restaurant.waiters (
+  WaiterName varchar(45),
+  PRIMARY KEY (WaiterName)
+);
+LOAD DATA LOCAL INFILE 'Menu.csv'
+INTO TABLE restaurant.menu
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+(itemID, name, category,price);
+LOAD DATA LOCAL INFILE 'restaurantTables.csv'
+INTO TABLE restaurant.restaurantTables
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\n'
+(tableNumber, subtotal, waitername);
+LOAD DATA LOCAL INFILE 'Databasewaiters.csv'
+INTO TABLE restaurant.waiters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+(WaiterName);
